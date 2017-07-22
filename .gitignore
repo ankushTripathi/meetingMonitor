@@ -2,3 +2,8 @@ node_modules/
 .idea/
 .DS_Store
 fetchallBranches.sh
+dist/
+tmp/
+*.json.gz
+gitserver.js
+

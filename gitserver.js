@@ -16,7 +16,7 @@ handler.on('push', function (event) {
   console.log('Received a push event for %s to %s',
     event.payload.repository.name,
     event.payload.ref);
-    exec('git pull origin master', function(err, stdout, stderr){
+    exec('git pull origin frontend', function(err, stdout, stderr){
 	console.log("couldn't do the pull , some error with credentials");
     })
 })
