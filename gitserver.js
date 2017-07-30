@@ -16,7 +16,10 @@ handler.on('push', function (event) {
   console.log('Received a push event for %s to %s',
     event.payload.repository.name,
     event.payload.ref);
-    exec('git pull origin master', function(err, stdout, stderr){
+    exec('cd /var/www/meetingMonitor && git pull origin master', function(err, stdout, stderr){
+	console.log(err);
+	console.log(stdout);
+	console.log(stderr);
 	console.log("couldn't do the pull , some error with credentials");
     })
 })
