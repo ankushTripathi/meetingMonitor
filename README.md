@@ -13,8 +13,17 @@
     
 # Routes
    <ul>
-    <li> /api/register : only for admin to add members </li>
-    <li> /ouath/token  : login route, gives access token for the user, send this access_token in subsequent requests for authentication</li>
+    <li>post /api/register : only for admin to add members 
+        <ul>
+          <li> form_data : name (required)<br>email (required) <br>password(required , min=6)<br>password_confirmation(required,matches)<br>role(required, [admin,hod,...etc])  <br> send json for best results<li>
+        </ul>
+  </li>
+    <li>post /ouath/token  : login route, gives access token for the user, send this access_token in subsequent requests for authentication
+        <ul>
+          <li> form_data : grant_type: "password"(required)<br>client_id: 2 (required)<br> client_secret: (required ,i will provide .. save it) <br> username:(required,username of user) <br> password: (required, password of user)<br> scope: "*" (required)<br> send json for best results </li>
+        </ul>
+  </li>
+  <li>get /api/user : get current user details (access_token as authorization key in header)</li>
    </ul>
     
     
