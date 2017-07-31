@@ -11,6 +11,8 @@ class Meeting extends Model
         'title',
         'description',
         'date_time',
+        'session',
+        'created_by'
     ];
 
     public function users(){

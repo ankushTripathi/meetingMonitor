@@ -14,14 +14,18 @@ class SetForeignKeys extends Migration
     public function up()
     {
         //
-        Schema::table('meeting_users', function(Blueprint $table){
+        Schema::table('meetings', function(Blueprint $table){
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+        });
+        
+        Schema::table('meeting_user', function(Blueprint $table){
             $table->foreign('user_id')->references('id')
                 ->on('users')->onDelete('cascade');
             $table->foreign('meeting_id')->references('id')
                 ->on('meetings')->onDelete('cascade');
         });
 
-        Schema::table('notification_users', function(Blueprint $table){
+        Schema::table('notification_user', function(Blueprint $table){
             $table->foreign('user_id')->references('id')
                 ->on('users')->onDelete('cascade');
             $table->foreign('notification_id')->references('id')
@@ -37,14 +41,18 @@ class SetForeignKeys extends Migration
     public function down()
     {
         //
-        Schema::table('meeting_users', function(Blueprint $table){
-            $table->dropForeign('meeting_users_user_id_foreign');
-            $table->dropForeign('meeting_users_meeting_id_foreign');
+        Schema::table('meeting_user', function(Blueprint $table){
+            $table->dropForeign('meeting_user_user_id_foreign');
+            $table->dropForeign('meeting_user_meeting_id_foreign');
         });
 
-        Schema::table('notification_users', function(Blueprint $table){
-            $table->dropForeign('notification_users_user_id_foreign');
-            $table->dropForeign('notification_users_notification_id_foreign');
+        Schema::table('notification_user', function(Blueprint $table){
+            $table->dropForeign('notification_user_user_id_foreign');
+            $table->dropForeign('notification_user_notification_id_foreign');
+        });
+
+        Schema::table('meetings', function(Blueprint $table){
+            $table->dropForeign('meetings_created_by_foreign');
         });
     }
 }

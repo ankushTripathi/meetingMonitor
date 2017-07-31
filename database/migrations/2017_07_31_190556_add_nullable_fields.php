@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMeetingUsersTable extends Migration
+class AddNullableFields extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,9 @@ class CreateMeetingUsersTable extends Migration
     public function up()
     {
         //
-        Schema::create('meeting_users', function (Blueprint $table) {
-            $table->integer('meeting_id')->unsigned()->index();
-            $table->integer('user_id')->unsigned()->index();
-            $table->string('status');
-            $table->primary(['meeting_id','user_id']);
+        Schema::table('meetings',function(Blueprint $table){
+            $table->string('session')->nullable()->change();
+            $table->dateTime('date_time')->nullable()->change();
         });
     }
 
@@ -30,6 +28,6 @@ class CreateMeetingUsersTable extends Migration
     public function down()
     {
         //
-        Schema::dropIfExists('meeting_users');
+        Schema::dropIfExists('meetings');
     }
 }

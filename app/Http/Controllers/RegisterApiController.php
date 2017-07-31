@@ -12,7 +12,6 @@ class RegisterApiController extends Controller
     //
     public function register(StoreUserRequest $request){
         
-        if(Auth::user()->role === 'admin'){
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
@@ -20,9 +19,6 @@ class RegisterApiController extends Controller
         $user->role = $request->role;
 
         $user->save();
-        }else{
-            abort(403,'unauthorized action');
-        }
 
     }
 }

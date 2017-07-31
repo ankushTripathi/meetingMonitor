@@ -5,10 +5,11 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
+use App\Traits\Orderable;
 
 class User extends Authenticatable
 {
-    use Notifiable,HasApiTokens;
+    use Notifiable,HasApiTokens,Orderable;
 
     /**
      * The attributes that are mass assignable.
@@ -29,6 +30,10 @@ class User extends Authenticatable
     ];
 
     public function meetings(){
-        return $this->belongsToMany('App\Meeting');
+        return $this->belongsToMany('App\Meeting')->latestFirst();
+    }
+    
+    public function notifications(){
+        return $this->belongsToMany('App\Notification')->latestFirst();
     }
 }

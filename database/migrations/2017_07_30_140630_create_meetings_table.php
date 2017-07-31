@@ -17,6 +17,8 @@ class CreateMeetingsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('description');
+            $table->integer('created_by')->unsigned()->index();
+            $table->string('session');
             $table->dateTime('date_time');
             $table->timestamps();
         });
