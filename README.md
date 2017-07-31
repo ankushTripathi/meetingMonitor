@@ -10,7 +10,11 @@
   <li>cmd> php artisan db:seed </li>
   <li>cmd> php artisan passport:install </li>
 </ol>
-    
+ 
+ <br>
+ <p> to update the repository run (i)composer install  (ii)php artisan migrate:refresh --seed </p>
+ <br>
+ 
 # Routes
    <ul>
     <li>post /api/register : only for admin to add members 
@@ -22,6 +26,12 @@
         <ul>
           <li> form_data : grant_type: "password"(required)<br>client_id: 2 (required)<br> client_secret: (required ,i will provide .. save it) <br> username:(required,username of user) <br> password: (required, password of user)<br> scope: "*" (required)<br> send json for best results </li>
         </ul>
+  </li>
+  <li> post /meeting   :request new meeting by faculty(incomplete)
+    <ul><li>
+        form_data : title (required,max=50) <br>description(required,max=2000) <br>session(required)
+      </li>
+    </ul>
   </li>
   <li>get /api/user : get current user details (access_token as authorization key in header)</li>
    </ul>
