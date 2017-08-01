@@ -27,7 +27,7 @@
           <li> form_data : grant_type: "password"(required)<br>client_id: 2 (required)<br> client_secret: (required ,i will provide .. save it) <br> username:(required,username of user) <br> password: (required, password of user)<br> scope: "*" (required)<br> send json for best results </li>
         </ul>
   </li>
-  <li> post /meeting   :request new meeting by faculty(incomplete)
+  <li> post /meeting   :request new meeting by faculty
     <ul><li>
         form_data : title (required,max=50) <br>description(required,max=2000) <br>session(required)
       </li>
