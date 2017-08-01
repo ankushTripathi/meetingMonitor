@@ -12,7 +12,8 @@ class Meeting extends Model
         'description',
         'date_time',
         'session',
-        'created_by'
+        'created_by',
+        'request_status',
     ];
 
     public function users(){
