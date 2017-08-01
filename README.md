@@ -1,4 +1,5 @@
 # meetingMonitor
+<b>Important</b> please dont remove .env.example file ,it is required in the repo
 
 # Install
 <ol>
@@ -29,10 +30,11 @@
   </li>
   <li> post /meeting   :request new meeting by faculty
     <ul><li>
-        form_data : title (required,max=50) <br>description(required,max=2000) <br>session(required)
+        form_data : title (required,max=50) <br>description(required,max=2000) <br>session(required)<br> members (array , each having id)
       </li>
     </ul>
   </li>
+  <li> added a few more routes </li>
   <li>get /api/user : get current user details (access_token as authorization key in header)</li>
    </ul>
     
