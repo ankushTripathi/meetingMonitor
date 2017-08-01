@@ -22,5 +22,8 @@ Route::post('/register','RegisterApiController@register')->middleware('auth:api'
 Route::group(['prefix' => 'meetings'],function(){
     Route::post('/','MeetingController@store')->middleware('auth:api');
     Route::post('/admin','MeetingController@storeByAdmin')->middleware('auth:api');
-    Route::post('/members/{member}','MeetingController@addMember')->middleware('auth:api');
+    Route::get('/','MeetingController@getAll')->middleware('auth:api');
+    Route::get('/{meeting_id}','MeetingController@getById')->middleware('auth:api');
 });
+
+Route::get('/users/{name}','UserController@getByName')->middleware('auth:api');

@@ -3,10 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Orderable;
 
 class Meeting extends Model
 {
     //
+    use Orderable;
     protected $fillable = [
         'title',
         'description',
