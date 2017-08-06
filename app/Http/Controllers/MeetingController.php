@@ -66,7 +66,7 @@ class MeetingController extends Controller
 
 //display functions
     public function getAll(){
-        $meetings = Meeting::orderBy('created_at','desc')->get();
+        $meetings = Auth::user()->meetings()->orderBy('created_at','desc')->get();
         return $meetings;
     }
 
