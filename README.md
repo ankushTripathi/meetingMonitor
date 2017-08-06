@@ -28,14 +28,33 @@
           <li> form_data : grant_type: "password"(required)<br>client_id: 2 (required)<br> client_secret: (required ,i will provide .. save it) <br> username:(required,username of user) <br> password: (required, password of user)<br> scope: "*" (required)<br> send json for best results </li>
         </ul>
   </li>
-  <li> post /meeting   :request new meeting by faculty
+  <li> post api/meetings   :request new meeting by faculty
     <ul><li>
-        form_data : title (required,max=50) <br>description(required,max=2000) <br>session(required)<br> members (array , each having id)
+        form_data : title (required,max=50) <br>description(required,max=2000) <br>session(required)<br>duration(required,positive number)<br> members (array , each having id)<br>date(required|date)
       </li>
     </ul>
   </li>
-  <li> added a few more routes </li>
+  <li> post api/meetings/admin :new meeting by director
+    <ul><li>
+        form_data : title (required,max=50) <br>description(required,max=2000) <br>time(required|time 'HH:MM')<br> members (array , each having id)<br>date(required|date)
+      </li>
+    </ul>
+  </li>
+  <li> get api/meetings :get all meetings of user</li>
+  <li> get api/meetings/{meeting_id} :get details of a meeting</li>
+  <li> get api/meetings/priority :get all high priority meetings</li>
+  <li> put api/meetings/priority/{meeting_id}  :update meeting priority </li>
+  <li> delete api/meetings/priority/{meeting_id} :remove meeting from priority</li>
+  <li> put api/meetings/accept/{meeting_id} :accept meeting request (faculty)</li>
+  <li put api/meetings/admin/accept/{meeting_id} :accept meeitng(admin) 
+  <ul>
+  <li>form_data : time (required|time 'HH:MM')</li>
+  </ul>
+  </li>
+  <li> put api/meetings/reject/{meeting_id} :reject meeting(faculty) </li>
+  <li> put api/meeting/admin/reject/{meeting_id} :reject meeting(admin)</li>
   <li>get /api/user : get current user details (access_token as authorization key in header)</li>
+  <li>get /api/users/{name_search} :search user by name</li>
    </ul>
     
     
