@@ -28,6 +28,7 @@ class StoreMeetingRequest extends FormRequest
             'title' => 'required|string|max:50|',
             'description' => 'required|max:2000',
             'session' => 'required|string|max:20',
+            'date' => 'required|date',
             'members' => 'array',
         ];
     }

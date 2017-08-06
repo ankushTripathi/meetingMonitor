@@ -17,6 +17,6 @@ class Notification extends Model
     ];
 
     public function users(){
-        $this->belongsToMany('App\User');
+        $this->belongsToMany('App\User')->withPivot('status');
     }
 }

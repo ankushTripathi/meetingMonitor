@@ -30,10 +30,10 @@ class User extends Authenticatable
     ];
 
     public function meetings(){
-        return $this->belongsToMany('App\Meeting')->latestFirst();
+        return $this->belongsToMany('App\Meeting')->withPivot('status','priority');
     }
     
     public function notifications(){
-        return $this->belongsToMany('App\Notification')->latestFirst();
+        return $this->belongsToMany('App\Notification')->withPivot('status');
     }
 }

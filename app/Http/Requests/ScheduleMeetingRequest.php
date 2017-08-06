@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreMeetingAdminRequest extends FormRequest
+class ScheduleMeetingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +25,7 @@ class StoreMeetingAdminRequest extends FormRequest
     {
         return [
             //
-            'title' => 'required|string|max:50|',
-            'description' => 'required|max:2000',
-            'date' => 'required|date',
-            'time' => 'date_format:"H:i"|required',
-            'members' => 'required|array'
+            'time' => 'date_format:"H:i"|required'
         ];
     }
 }

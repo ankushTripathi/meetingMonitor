@@ -19,8 +19,9 @@ class MeetingController extends Controller
         $meeting->title = $request->title;
         $meeting->description = $request->description;
         $meeting->session = $request->session;
+        $meeting->date = $request->date;
         $meeting->created_by = Auth::user()->id;
-        $meeting->request_status = 'pending';
+        
 
         $meeting->save();
 
@@ -45,9 +46,9 @@ class MeetingController extends Controller
         $meeting = new Meeting;
         $meeting->title = $request->title;
         $meeting->description = $request->description;
-        $meeting->date_time = $request->date_time;
+        $meeting->date = $request->date;
+        $meeitng->time = $request->time;
         $meeting->created_by = Auth::user()->id;
-        $meeting->request_status = 'pending';
 
         $meeting->save();
 
@@ -65,18 +66,51 @@ class MeetingController extends Controller
 
 //display functions
     public function getAll(){
-        $meetings = Meeting::all()->latestFirst();
+        $meetings = Meeting::orderBy('created_at','desc')->get();
         return $meetings;
     }
 
     public function getById($meeting_id){
-        $meeting = Meeting::find($meeting_id);
+        $meeting = Meeting::findOrFail($meeting_id);
         $members = $meeting->users;
-        return response()->json(['meeting' => $meeting, 'members' => $members]);
+        return response($meeting);
     }
 
-    public function getPriority($request){
-
+    public function getPriority(){
+        $meetings = Auth::user()->meetings()->where('priority','high')->get();
+        return $meetings;
     }
 
+    //update controllers
+    public function setPriority($meeting_id){
+        $meeting = Auth::user()->meetings()->where('meeting_id',$meeting_id)->firstOrFail();
+        $meeting->pivot->priority = 'high';
+        $meeting->pivot->save();
+    }
+
+    public function accept($meeting_id){
+        if(Auth::user()->role === 'admin'){
+            return redirect()->route('acceptByAdmin');
+        }
+        $meeting = Auth::user()->meetings()->where('meeting_id',$meeting_id)->firstOrFail();
+        $meeting->pivot->status = 'accepted';
+        $meeting->pivot->save();
+    }
+    public function adminAccept(ScheduleMeetingRequest $request,$meeting_id){
+        $meeting = Auth::user()->meetings()->where('meeting_id',$meeting_id)->firstOrFail();
+        $meeting->pivot->status = 'accepted';
+        $meeting->pivot->save();
+        $meeting->time = $request->time;
+        $meeting->save();
+    }
+    public function reject($meeting_id){
+        $meeting = Auth::user()->meetings()->where('meeting_id',$meeting_id)->firstOrFail();
+        $meeting->pivot->status =  'rejected';
+        $meeting->pivot->save();
+    }
+    public function unsetPriority($meeting_id){
+        $meeting = Auth::user()->meetings()->where('meeting_id',$meeting_id)->firstOrFail();
+        $meeting->pivot->priority = 'low'; 
+        $meeting->pivot->save();
+    }
 }

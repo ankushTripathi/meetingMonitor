@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddMeetingRequestStatus extends Migration
+class DropDateTimeAddDateTime extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,9 @@ class AddMeetingRequestStatus extends Migration
     {
         //
         Schema::table('meetings',function(Blueprint $table){
-            $table->string('request_status');
+            $table->dropColumn(['request_status','date_time']);
+            $table->date('date');
+            $table->time('time')->nullable();
         });
     }
 

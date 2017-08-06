@@ -19,11 +19,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/register','RegisterApiController@register')->middleware('auth:api');
 
-Route::group(['prefix' => 'meetings'],function(){
-    Route::post('/','MeetingController@store')->middleware('auth:api');
-    Route::post('/admin','MeetingController@storeByAdmin')->middleware('auth:api');
-    Route::get('/','MeetingController@getAll')->middleware('auth:api');
-    Route::get('/{meeting_id}','MeetingController@getById')->middleware('auth:api');
+Route::group(['prefix' => 'meetings','middleware'=>'auth:api'],function(){
+    Route::post('/','MeetingController@store');
+    Route::post('/admin','MeetingController@storeByAdmin');
+    Route::get('/','MeetingController@getAll');
+    Route::get('/priority','MeetingController@getPriority');
+    Route::put('/priority/{meeting_id}','MeetingController@setPriority');
+    Route::delete('/priority/{meeting_id}','MeetingController@unsetPriority');
+    Route::get('/{meeting_id}','MeetingController@getById');
+    Route::put('/accept/{meeting_id}','MeetingController@accept');
+    Route::put('/reject/{meeting_id}','MeetingController@reject');
+    Route::put('/admin/accept/{meeting_id}','MeetingController@adminAccept');
 });
 
 Route::get('/users/{name}','UserController@getByName')->middleware('auth:api');
