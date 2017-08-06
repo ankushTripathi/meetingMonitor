@@ -12,10 +12,11 @@ class Meeting extends Model
     protected $fillable = [
         'title',
         'description',
-        'date_time',
+        'date',
         'session',
         'created_by',
-        'request_status',
+        'time',
+        'duration',
     ];
 
     public function users(){

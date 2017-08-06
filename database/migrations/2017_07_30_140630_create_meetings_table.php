@@ -20,6 +20,7 @@ class CreateMeetingsTable extends Migration
             $table->integer('created_by')->unsigned()->index();
             $table->string('session');
             $table->dateTime('date_time');
+            $table->string('request_status');
             $table->timestamps();
         });
     }

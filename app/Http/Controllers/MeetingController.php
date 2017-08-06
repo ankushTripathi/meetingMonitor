@@ -20,6 +20,7 @@ class MeetingController extends Controller
         $meeting->description = $request->description;
         $meeting->session = $request->session;
         $meeting->date = $request->date;
+        $meeting->duration = $request->duration;
         $meeting->created_by = Auth::user()->id;
         
 
