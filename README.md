@@ -56,8 +56,8 @@
   <li>get /api/user : get current user details (access_token as authorization key in header)</li>
   <li>get /api/users/{name_search} :search user by name</li>
    </ul>
-    
-    # Todo
+  
+   # Todo
     <ol>
       <li> calendar table </li>
       <li> notifications </li>
