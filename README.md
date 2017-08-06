@@ -57,4 +57,10 @@
   <li>get /api/users/{name_search} :search user by name</li>
    </ul>
     
+    # Todo
+    <ol>
+      <li> calendar table </li>
+      <li> notifications </li>
+      <li> set session in web when login </li>
+    </ol>
     
